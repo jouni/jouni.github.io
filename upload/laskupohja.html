@@ -1,0 +1,419 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css" media="all">
+html {
+	padding: 0;
+	margin: 0;
+}
+body {
+	padding: 0;
+	margin: 1cm 1.5cm 2cm 1cm;
+	width: 17cm;
+	font: normal .9em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+input,
+textarea {
+	border: none;
+	background: transparent;
+	padding: 0;
+	margin: 0;font: normal 1em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+input:focus {
+	outline: none;
+}
+
+input[type="date"] {
+	width: 120%;
+}
+
+h1 {
+	font-size: 1em;
+	margin: 0;
+}
+
+header {
+	border-bottom: 1px solid #999;
+	position: relative;
+	padding: 0 0.2cm .5cm;
+	margin: 0 -0.2cm;
+}
+
+header h2 {
+	position: absolute;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	top: 0;
+	right: 5.2cm;
+	margin: 0;
+}
+
+header textarea {
+	width: 6cm;
+	height: 6em;
+}
+
+header .date,
+header .laskun-nro {
+	position: absolute;
+	border: 1px solid #999;
+	border-width: 1px 0 0 1px;
+	bottom: 0;
+	right: 5.48cm;
+	width: 3.5cm;
+	padding: .1cm .2cm;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+header .laskun-nro {
+	right: 0;
+	width: 5.5cm;
+	border-right-width: 1px;
+}
+
+label {
+	font-size: .8em;
+	color: #4a5596;
+	display: block;
+	white-space: nowrap;
+}
+
+.top {
+	position: relative;
+	padding: .5cm 0;
+	height: 3.87cm;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.top textarea {
+	width: 6cm;
+	height: 8em;
+}
+
+.info {
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	padding: 0.3cm 0.2cm;
+	margin: 0 -0.2cm;
+	position: relative;
+}
+
+textarea {
+	width: 100%;
+	overflow: hidden;
+	resize: none;
+}
+
+.info textarea {
+	height: 8cm;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+#info-sum {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	bottom: 4em;
+	white-space: pre;
+	padding: 0.3cm 0.2cm;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: #fff;
+}
+
+#info-sum .mark {
+	background: yellow;
+}
+
+.maksuehdot,
+.huomautusaika,
+.korko {
+	border: 1px solid #999;
+	border-width: 0 1px 1px 1px;
+	width: 8.99cm;
+	padding: .1cm .2cm;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	right: -0.2cm;
+	height: 1.3cm;
+	overflow: hidden;
+}
+
+.huomautusaika {
+	top: 1.3cm;
+}
+
+.korko {
+	top: 2.6cm;
+}
+
+footer {
+	margin: 0 -0.2cm;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.viite,
+.total,
+.summa,
+.deadline,
+.saajan-tili,
+.saaja,
+.maksaja {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: static;
+	float: left;
+	padding: .1cm .2cm;
+	height: 1.3cm;
+	border: 1px solid #999;
+	border-top-width: 0;
+	width: 6.5cm;
+	overflow: hidden;
+}
+
+.viite,
+.deadline {
+	text-transform: uppercase;
+	border-right: none;
+}
+
+.total {
+	text-transform: uppercase;
+	width: 2.5cm;
+	font-weight: bold;
+	border-right: none;
+}
+
+.summa {
+	text-transform: uppercase;
+	width: 4.03cm;
+	border-right-width: 1px;
+}
+
+.summa input {
+	font-weight: bold;
+}
+
+.deadline {
+	width: 4.37cm;
+}
+
+.saajan-tili {
+	height: auto;
+	float: none;
+	width: 100%;
+	margin: ;
+}
+
+.saaja,
+.maksaja {
+	height: 2cm;
+	width: 50%;
+}
+
+.maksaja {
+	border-left: none;
+	margin: 0;
+}
+
+#calc {
+	display: none;
+}
+
+
+</style>
+<style type="text/css" media="screen">
+body {
+	margin: 1cm auto 2cm;
+}
+input,
+textarea {
+	background: #f5f5f5;
+}
+input[type="date"] {
+	width: 100%;
+}
+
+#calc {
+	display: block;
+	float: right;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h2>Lasku Faktura</h2>
+<h1>Asennus Tamminen</h1>
+<textarea>Välskärinkatu 30
+20740 Turku
+Puh. 040-5710 975
+LY 1773757-8</textarea>
+
+<div class="date">
+<label>Päivämäärä Datum</label>
+<input type="date" value="" id="date">
+</div>
+
+<div class="laskun-nro">
+<label>Laskun numero Fakturans nummer</label>
+<input type="text" value="332">
+</div>
+</header>
+
+<section class="top">
+<textarea>Topi-Keittiöt Oy
+PL 46
+85101 Kalajoki
+Y-tunnus 2698933-9</textarea>
+
+<div class="maksuehdot">
+<label>Maksuehdot Betalningsvillkor</label>
+<input type="text" value="7 PV NETTO">
+</div>
+
+<div class="huomautusaika">
+<label>Huomautusaika Anmärkningstid</label>
+<input type="text" value="7 PV">
+</div>
+
+<div class="korko">
+<label>Viivästyskorko</label>
+<input type="text" value="13 %">
+</div>
+
+</section>
+
+<section class="info">
+<textarea id="info"></textarea>
+<div id="info-sum"></div>
+<button id="calc" title="Laskee tekstiin syötetyt hinnat yhteen ja kirjoittaa sen 'Yhteensä' kenttään.
+
+Vain sellaiset luvut, jotka ovat rivien päädyssä, ja muotoa 12,34 €, lasketaan mukaan.
+
+Euro-merkki saa olla myös 'e'">Laske summa</button>
+
+Käännetty verovelvollisuus (8 c §)
+
+
+</section>
+
+<footer>
+
+<div class="saajan-tili">
+<label>Saajan tilinumero<br>Mottagarens kontonummer</label>
+<input type="text" value="IBAN&nbsp;&nbsp;&nbsp;&nbsp;FI 1057111320075747"><br>
+<input type="text" value="OKO&nbsp;&nbsp;&nbsp;&nbsp;571113-275747">
+</div>
+
+<div class="saaja">
+<label>Saaja Mottagare</label>
+Asennus Tamminen
+</div>
+
+<div class="maksaja">
+<label>Maksaja Betalare</label>
+<textarea>Topi-Keittiöt Oy
+Y-tunnus: 2698933-9</textarea>
+</div>
+
+<div class="viite">
+<label>Viitenumero Referensnummer</label>
+<input type="text" value="6635" id="viite">
+</div>
+
+<div class="deadline">
+<label>Eräpäivä Förf.dag</label>
+<input type="date" value="" id="deadline">
+</div>
+
+<div class="total">
+<label>Yhteensä<br>Totalt</label>
+</div>
+
+<div class="summa">
+<label>Eur</label>
+<input type="text" value="" id="summa">
+</div>
+</footer>
+
+<script type="text/javascript">
+
+function formatDate(date) {
+	var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+	return (1900 + date.getYear()) + "-" + (1+date.getMonth()) + "-" + day
+}
+
+var today = new Date()
+document.getElementById("date").value = formatDate(today)
+
+today.setDate(today.getDate()+7)
+document.getElementById("deadline").value = formatDate(today)
+
+
+var info = document.getElementById("info"),
+   infosum = document.getElementById("info-sum"),
+   summa = document.getElementById("summa")
+
+function sum() {
+	var reg = /\b([0-9]+,[0-9]+)\s?[e|€]?\s*$/gim
+	var sum = 0
+	var feedback = info.value
+	var result;
+	while(result = reg.exec(info.value)) {
+		if(result[1].indexOf(".") > -1)
+			continue;
+		sum += parseFloat(result[1].replace(",","."))
+
+		feedback = feedback.replace(result[0], '<span class="mark">'+result[0]+'</span>')
+	}
+	summa.value = (sum.toFixed(2)+"").replace(".",",")
+
+	infosum.innerHTML = feedback
+	infosum.style.display = "block"
+
+	setTimeout(function() {infosum.style.display=""}, 1500)
+}
+
+function allowTab(e) {
+	if(e.keyCode == 9) {
+		var selStart = event.target.selectionStart;
+        var val = event.target.value;
+        val = val.substr(0, event.target.selectionStart) + "\t" + val.substr(event.target.selectionEnd, val.length);
+        event.target.value = val;
+        event.target.selectionEnd = event.target.selectionStart = selStart + 1;
+        e.preventDefault()
+        return false;
+	}
+}
+
+info.onkeypress = allowTab
+info.onkeydown = allowTab
+
+document.getElementById("calc").onclick = sum
+</script>
+</body>
+</html>
